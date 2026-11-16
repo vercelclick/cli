@@ -78,7 +78,7 @@ jobs:
           repository: vercelclick/core
           token: "${{ secrets.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
-        run: yq -i '.dependencies.vercelclick-local.path = "core/local"' Cargo.toml
+        run: yq -i '.dependencies.click-local.path = "core/local"' Cargo.toml
       # sure would be cool if github gave us proper conditionals...
       # so here's a doubly-nested ternary-via-truthiness to try to provide the best possible
       # functionality based on whether this is a pull_request, and whether it's from a fork.
