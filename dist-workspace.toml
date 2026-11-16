@@ -5,7 +5,7 @@ members = ["cargo:."]
 [dist]
 allow-dirty = ["ci"]
 ci = "github"
-tap = "secretpass/homebrew-tap"
+tap = "vercelclick/homebrew-tap"
 install-updater = true
 github-attestations = true
 cargo-dist-version = "0.33.1"
@@ -19,4 +19,4 @@ publish-jobs = ["homebrew"]
 
 
 [dist.bin-aliases]
-spass = ["secretpass"]
+click = ["click-cli"]

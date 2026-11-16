@@ -1,19 +1,19 @@
 [package]
-name = "secretpass-cli"
+name = "click-cli"
 version = "0.2.3"
 edition = "2024"
-repository = "https://github.com/secretpass/cli"
-authors = ["Secretpass Inc", "Billcountry Mwaniki"]
-description = "Secretpass cli allows you to manage secrets locally secured through passkeys for human access and generated private keys for machine access"
-homepage = "https://secretpass.cloud"
+repository = "https://github.com/vercelclick/cli"
+authors = ["Vercel Click Vault", "Billcountry Mwaniki"]
+description = "Click uses passkeys to encrypt and decrypt secrets on your device offering a Just In Time secret injection model. Encrypted secrets are stored in your codebase or on a our hosted vault service."
+homepage = "https://vercel.click"
 
 [[bin]]
-name = "spass"
+name = "click"
 path = "src/main.rs"
 
 [dependencies]
 clap = { version = "4.6.7", features = ["derive"] }
-secretpass-local = { path = "../core/local" }
+click-local = { path = "../core/local" }
 [profile.release]
 opt-level = "z"
 lto = "thin"

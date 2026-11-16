@@ -75,10 +75,10 @@ jobs:
         with:
           path: core
           ref: "${{ github.ref_name }}"
-          repository: secretpass/core
+          repository: vercelclick/core
           token: "${{ secrets.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
-        run: yq -i '.dependencies.secretpass-local.path = "core/local"' Cargo.toml
+        run: yq -i '.dependencies.vercelclick-local.path = "core/local"' Cargo.toml
       # sure would be cool if github gave us proper conditionals...
       # so here's a doubly-nested ternary-via-truthiness to try to provide the best possible
       # functionality based on whether this is a pull_request, and whether it's from a fork.
@@ -135,10 +135,10 @@ jobs:
         with:
           path: core
           ref: "${{ github.ref_name }}"
-          repository: secretpass/core
+          repository: vercelclick/core
           token: "${{ secrets.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
-        run: yq -i '.dependencies.secretpass-local.path = "core/local"' Cargo.toml
+        run: yq -i '.dependencies.vercelclick-local.path = "core/local"' Cargo.toml
       - name: Install Rust non-interactively if not already installed
         if: ${{ matrix.container }}
         run: |
@@ -208,10 +208,10 @@ jobs:
         with:
           path: core
           ref: "${{ github.ref_name }}"
-          repository: secretpass/core
+          repository: vercelclick/core
           token: "${{ secrets.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
-        run: yq -i '.dependencies.secretpass-local.path = "core/local"' Cargo.toml
+        run: yq -i '.dependencies.vercelclick-local.path = "core/local"' Cargo.toml
       - name: Install cached dist
         uses: actions/download-artifact@v8
         with:
@@ -267,10 +267,10 @@ jobs:
         with:
           path: core
           ref: "${{ github.ref_name }}"
-          repository: secretpass/core
+          repository: vercelclick/core
           token: "${{ secrets.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
-        run: yq -i '.dependencies.secretpass-local.path = "core/local"' Cargo.toml
+        run: yq -i '.dependencies.vercelclick-local.path = "core/local"' Cargo.toml
       - name: Install cached dist
         uses: actions/download-artifact@v8
         with:
@@ -335,7 +335,7 @@ jobs:
       - uses: actions/checkout@v7
         with:
           persist-credentials: true
-          repository: "secretpass/homebrew-tap"
+          repository: "vercelclickF/homebrew-tap"
           token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
       # So we have access to the formula
       - name: Fetch homebrew formulae

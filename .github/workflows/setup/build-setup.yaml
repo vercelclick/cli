@@ -1,7 +1,7 @@
 - name: Checkout
   uses: actions/checkout@v7
   with:
-    repository: secretpass/core
+    repository: vercelclick/core
     token: ${{ secrets.CORE_ACCESS_TOKEN }}
     path: core
     ref: ${{ github.ref_name }}

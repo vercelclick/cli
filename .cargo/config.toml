@@ -1,11 +1,4 @@
-[build]
-rustflags = ["--cfg", "web_sys_unstable_apis"]
-
 [env]
-UI_ORIGIN = "https://local.secretpass.cloud"
-CLOUD_PROXY_URL = "https://api.secretpass.cloud"
-
-CLOUD_RP_ID = "cloud.secretpass.cloud"
-CLOUD_RP_ORIGIN = "https://cloud.secretpass.cloud"
-LOCAL_RP_ID = "local.secretpass.cloud"
-LOCAL_RP_ORIGIN = "https://local.secretpass.cloud"
+JWT_CLOUD_PUBLIC_KEY = """-----BEGIN PUBLIC KEY-----
+MCowBQYDK2VwAyEAUZpxhy6zmOapDcHM7TCoO0PuVJo1HXgijEsMss+CtT4=
+-----END PUBLIC KEY-----"""
