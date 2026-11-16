@@ -8,7 +8,7 @@ ci = "github"
 tap = "vercelclick/homebrew-tap"
 install-updater = true
 github-attestations = true
-cargo-dist-version = "0.33.1"
+cargo-dist-version = "0.34.0"
 
 plan-setup = "setup/build-setup.yaml"
 github-build-setup = "setup/build-setup.yaml"
