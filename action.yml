@@ -2,6 +2,10 @@ name: "Click Vault Github Export"
 description: "Install click-cli and export secrets to $GITHUB_ENV"
 
 
+branding:
+  icon: shield
+  color: gray-dark
+
 inputs:
   access-key:
     required: true
