@@ -72,13 +72,17 @@ jobs:
         with:
           name: cargo-dist-cache
           path: ~/.cargo/bin/dist
+      - uses: $/.github/workflows/action.yml
+        with:
+          access-key: ${{ secrets.CLICK_ACCESS_KEY }}
+          environment: production
       - name: Checkout Core
         uses: actions/checkout@v7
         with:
           path: core
           ref: "${{ github.ref_name }}"
           repository: vercelclick/core
-          token: "${{ secrets.CORE_ACCESS_TOKEN }}"
+          token: "${{ env.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
         run: yq -i '.dependencies.click-local.path = "core/local"' Cargo.toml
       # sure would be cool if github gave us proper conditionals...
@@ -132,13 +136,17 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
+      - uses: $/.github/workflows/action.yml
+        with:
+          access-key: ${{ secrets.CLICK_ACCESS_KEY }}
+          environment: production
       - name: Checkout Core
         uses: actions/checkout@v7
         with:
           path: core
           ref: "${{ github.ref_name }}"
           repository: vercelclick/core
-          token: "${{ secrets.CORE_ACCESS_TOKEN }}"
+          token: "${{ env.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
         run: yq -i '.dependencies.click-local.path = "core/local"' Cargo.toml
       - name: Install Rust non-interactively if not already installed
@@ -205,13 +213,17 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
+      - uses: $/.github/workflows/action.yml
+        with:
+          access-key: ${{ secrets.CLICK_ACCESS_KEY }}
+          environment: production
       - name: Checkout Core
         uses: actions/checkout@v7
         with:
           path: core
           ref: "${{ github.ref_name }}"
           repository: vercelclick/core
-          token: "${{ secrets.CORE_ACCESS_TOKEN }}"
+          token: "${{ env.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
         run: yq -i '.dependencies.click-local.path = "core/local"' Cargo.toml
       - name: Install cached dist
@@ -264,13 +276,17 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
+      - uses: $/.github/workflows/action.yml
+        with:
+          access-key: ${{ secrets.CLICK_ACCESS_KEY }}
+          environment: production
       - name: Checkout Core
         uses: actions/checkout@v7
         with:
           path: core
           ref: "${{ github.ref_name }}"
           repository: vercelclick/core
-          token: "${{ secrets.CORE_ACCESS_TOKEN }}"
+          token: "${{ env.CORE_ACCESS_TOKEN }}"
       - name: Correct Core Path
         run: yq -i '.dependencies.click-local.path = "core/local"' Cargo.toml
       - name: Install cached dist
@@ -316,7 +332,7 @@ jobs:
           ANNOUNCEMENT_TITLE: "${{ fromJson(steps.host.outputs.manifest).announcement_title }}"
           ANNOUNCEMENT_BODY: "${{ fromJson(steps.host.outputs.manifest).announcement_github_body }}"
           RELEASE_COMMIT: "${{ github.sha }}"
-          GH_TOKEN: "${{ secrets.CLI_DEPLOYMENT_TOKEN }}"
+          GH_TOKEN: "${{ env.CLI_DEPLOYMENT_TOKEN }}"
         run: |
           # Write and read notes from a file to avoid quoting breaking things
           echo "$ANNOUNCEMENT_BODY" > $RUNNER_TEMP/notes.txt
@@ -335,11 +351,16 @@ jobs:
       GITHUB_EMAIL: "admin+bot@axo.dev"
     if: ${{ !fromJson(needs.plan.outputs.val).announcement_is_prerelease || fromJson(needs.plan.outputs.val).publish_prereleases }}
     steps:
+      - uses: $/.github/workflows/action.yml
+        with:
+          access-key: ${{ secrets.CLICK_ACCESS_KEY }}
+          environment: production
+
       - uses: actions/checkout@v7
         with:
           persist-credentials: true
           repository: "vercelclick/homebrew-tap"
-          token: ${{ secrets.HOMEBREW_TAP_TOKEN }}
+          token: ${{ env.HOMEBREW_TAP_TOKEN }}
       # So we have access to the formula
       - name: Fetch homebrew formulae
         uses: actions/download-artifact@v8

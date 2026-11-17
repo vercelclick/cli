@@ -1,0 +1,54 @@
+{
+  "project": {
+    "id": "01a1e7b3-66c3-73c3-addb-785b7f89afef",
+    "name": "Vercel Click Cli",
+    "description": "Secrets used for the deployment of the CLI App",
+    "updated_at": "2026-11-17T04:10:56.579517Z"
+  },
+  "environments": [
+    {
+      "name": "development",
+      "project_id": "01a1e7b3-66c3-73c3-addb-785b7f89afef",
+      "description": "For testing by developers before moving to QC",
+      "tags": [],
+      "updated_at": "2026-11-17T04:10:56.579521Z",
+      "created_at": "2026-11-17T04:10:56.579521Z"
+    },
+    {
+      "name": "staging",
+      "project_id": "01a1e7b3-66c3-73c3-addb-785b7f89afef",
+      "description": "For testing by QAs before promoting to production",
+      "tags": [],
+      "updated_at": "2026-11-17T04:10:56.579522Z",
+      "created_at": "2026-11-17T04:10:56.579522Z"
+    },
+    {
+      "name": "production",
+      "project_id": "01a1e7b3-66c3-73c3-addb-785b7f89afef",
+      "description": "Prod secrets, heavily restricted",
+      "tags": [],
+      "updated_at": "2026-11-17T04:10:56.579523Z",
+      "created_at": "2026-11-17T04:10:56.579523Z"
+    }
+  ],
+  "contributors": [
+    [
+      {
+        "id": "01a1e4ca-7533-745b-a498-cd308276ee59",
+        "email": "me@billcountry.tech",
+        "name": "Billcountry Mwaniki",
+        "key_salt": "xTVquF5y9J-uwRmxPxg5rn1aIMKfMQjT_4JCCbVF794",
+        "updated_at": "2026-11-16T14:38:19.460156Z"
+      },
+      {
+        "id": "01a1e7b3-66c3-73c3-addb-785c66af85eb",
+        "user_id": "01a1e4ca-7533-745b-a498-cd308276ee59",
+        "status": "Active",
+        "project_id": "01a1e7b3-66c3-73c3-addb-785b7f89afef",
+        "role": "Admin",
+        "access": [],
+        "updated_at": "2026-11-17T04:10:56.579526Z"
+      }
+    ]
+  ]
+}

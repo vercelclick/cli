@@ -1,0 +1,20 @@
+[
+  {
+    "id": "f5de9b1e-2aa2-5388-b529-0e24a0eb2e4c",
+    "name": "GITHUB_ACTION_DEPLOYMENT",
+    "description": "Key used to decrypt secrets for release on github actions",
+    "project_id": "01a1e7b3-66c3-73c3-addb-785b7f89afef",
+    "access": [
+      {
+        "name": "production",
+        "level": "ReadOnly",
+        "secrets": [
+          "$ALL$"
+        ]
+      }
+    ],
+    "public_key": "NzHCiCIjekxIoKqCcumvAI1v8kjOit_DBGJEfoiPPBA",
+    "generated_by": "me@billcountry.tech",
+    "generated_on": "2026-11-17T04:42:27.341549Z"
+  }
+]
