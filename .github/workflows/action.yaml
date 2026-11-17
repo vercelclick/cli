@@ -1,4 +1,5 @@
-name: Vercel Click Github Actions
+name: Click Vault Github
+description: Install click-cli and export secrets to $GITHUB_ENV
 
 on:
   workflow_call:
