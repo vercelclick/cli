@@ -72,7 +72,7 @@ jobs:
         with:
           name: cargo-dist-cache
           path: ~/.cargo/bin/dist
-      - uses: $/.github/workflows/action.yml
+      - uses: ./.github/workflows/export-secrets
         with:
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
@@ -136,7 +136,7 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
-      - uses: $/.github/workflows/action.yml
+      - uses: ./.github/workflows/export-secrets
         with:
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
@@ -213,7 +213,7 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
-      - uses: $/.github/workflows/action.yml
+      - uses: ./.github/workflows/export-secrets
         with:
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
@@ -276,7 +276,7 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
-      - uses: $/.github/workflows/action.yml
+      - uses: ./.github/workflows/export-secrets
         with:
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
@@ -351,7 +351,7 @@ jobs:
       GITHUB_EMAIL: "admin+bot@axo.dev"
     if: ${{ !fromJson(needs.plan.outputs.val).announcement_is_prerelease || fromJson(needs.plan.outputs.val).publish_prereleases }}
     steps:
-      - uses: $/.github/workflows/action.yml
+      - uses: ./.github/workflows/export-secrets
         with:
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
