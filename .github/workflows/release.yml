@@ -18,7 +18,6 @@ permissions:
   contents: write
   attestations: write
   artifact-metadata: write
-
 # This task will run whenever you push a git tag that looks like a version
 # like "1.0.0", "v0.1.0-prerelease.1", "my-app/0.1.0", "releases/v1.0.0", etc.
 # Various formats will be parsed into a VERSION and an optional PACKAGE_NAME, where
@@ -45,7 +44,8 @@ on:
   push:
     tags:
       - '**[0-9]+.[0-9]+.[0-9]+*'
-
+env:
+  CLICK_CLI_PREVIOUS: 0.2.7
 jobs:
   # Run 'dist plan' (or host) to determine what tasks we need to do
   plan:
@@ -74,6 +74,7 @@ jobs:
           path: ~/.cargo/bin/dist
       - uses: ./
         with:
+          version: ${{ env.CLICK_CLI_PREVIOUS }}
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
       - name: Checkout Core
@@ -101,7 +102,6 @@ jobs:
         with:
           name: artifacts-plan-dist-manifest
           path: plan-dist-manifest.json
-
   # Build and packages all the platform-specific things
   build-local-artifacts:
     name: build-local-artifacts (${{ join(matrix.targets, ', ') }})
@@ -138,6 +138,7 @@ jobs:
           submodules: recursive
       - uses: ./
         with:
+          version: ${{ env.CLICK_CLI_PREVIOUS }}
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
       - name: Checkout Core
@@ -156,7 +157,6 @@ jobs:
             curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
             echo "$HOME/.cargo/bin" >> $GITHUB_PATH
           fi
-
       - name: Install dist
         run: ${{ matrix.install_dist.run }}
       # Get the dist-manifest
@@ -198,7 +198,6 @@ jobs:
           path: |
             ${{ steps.cargo-dist.outputs.paths }}
             ${{ env.BUILD_MANIFEST_NAME }}
-
   # Build and package all the platform-agnostic(ish) things
   build-global-artifacts:
     needs:
@@ -215,6 +214,7 @@ jobs:
           submodules: recursive
       - uses: ./
         with:
+          version: ${{ env.CLICK_CLI_PREVIOUS }}
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
       - name: Checkout Core
@@ -278,6 +278,7 @@ jobs:
           submodules: recursive
       - uses: ./
         with:
+          version: ${{ env.CLICK_CLI_PREVIOUS }}
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
       - name: Checkout Core
@@ -338,7 +339,6 @@ jobs:
           echo "$ANNOUNCEMENT_BODY" > $RUNNER_TEMP/notes.txt
 
           gh release create "${{ needs.plan.outputs.tag }}" --target "$RELEASE_COMMIT" $PRERELEASE_FLAG --title "$ANNOUNCEMENT_TITLE" --notes-file "$RUNNER_TEMP/notes.txt" artifacts/*
-
   publish-homebrew-formula:
     needs:
       - plan
@@ -355,15 +355,16 @@ jobs:
         with:
           persist-credentials: false
           submodules: recursive
-
       - uses: ./
         with:
+          version: ${{ env.CLICK_CLI_PREVIOUS }}
           access-key: ${{ secrets.CLICK_ACCESS_KEY }}
           environment: production
-
-      - run: rm -rf $(realpath .)
-        name: Clean current directory
-
+      - name: Clean current directory
+        run: |
+          repo_path=$(realpath .)
+          rm -rf $repo_path
+          mkdir $repo_path
       - uses: actions/checkout@v7
         with:
           persist-credentials: true
@@ -397,7 +398,6 @@ jobs:
             git commit -m "${name} ${version}"
           done
           git push
-
   announce:
     needs:
       - plan

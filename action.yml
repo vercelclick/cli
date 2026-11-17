@@ -1,11 +1,8 @@
 name: "Click Vault Github Export"
 description: "Install click-cli and export secrets to $GITHUB_ENV"
-
-
 branding:
   icon: shield
   color: gray-dark
-
 inputs:
   access-key:
     required: true
@@ -13,15 +10,17 @@ inputs:
   environment:
     required: true
     description: "Vault environment to decrypt secrets from"
-
-
+  version:
+    required: false
+    description: "The version of click cli to use, defaults to the action version"
 runs:
   using: "composite"
   steps:
     - name: Install Click cli
-      run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/vercelclick/cli/releases/download/0.2.7/click-cli-installer.sh | sh
+      run: curl --proto '=https' --tlsv1.2 -LsSf https://github.com/vercelclick/cli/releases/download/${{ inputs.version || env.CLICK_CLI_LATEST }}/click-cli-installer.sh | sh
       shell: bash
-
+      env:
+        CLICK_CLI_LATEST: 0.2.8
     - name: Inject secrets to Github env
       run: click export --access-key ${{ inputs.access-key }} --env ${{ inputs.environment }} --format github-actions >> $GITHUB_ENV
       shell: bash
